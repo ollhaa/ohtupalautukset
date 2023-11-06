@@ -21,9 +21,7 @@ class TestStatisticsService(unittest.TestCase):
 
     def test_etsii_pelaajan(self):
         kurri = self.stats.search("Kurri").name
-        #print(kurri)
         testi = Player("Kurri", "EDM", 37,53).name
-        #print(testi)
         self.assertAlmostEqual(kurri, testi)
 
     def test_etsii_pelaajan2(self):
@@ -39,7 +37,17 @@ class TestStatisticsService(unittest.TestCase):
         col = self.stats.team("COL")
         self.assertAlmostEqual(col, [])
 
-    #def test_top(self):
+    def test_top(self):
+        best = self.stats.top(1)[0].name
+        self.assertAlmostEqual(best, Player("Gretzky", "EDM", 35,89).name)
 
+    def test_top4(self):
+        best4 = self.stats.top(3)
+        names = []
+        for name in best4:
+            names.append(str(name.name))
+
+        self.assertAlmostEqual(len(best4), len(names))
+        #'Gretzky', 'Lemieux', 'Yzerman', 'Kurri')
 
         
