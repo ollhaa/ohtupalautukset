@@ -50,4 +50,12 @@ class TestStatisticsService(unittest.TestCase):
         self.assertAlmostEqual(len(best4), len(names))
         #'Gretzky', 'Lemieux', 'Yzerman', 'Kurri')
 
+    def test_top1_goals(self):
+        best = self.stats.top(1,2)[0].name
+        self.assertAlmostEqual(best, Player("Lemieux", "PIT", 45,54).name)
+
+    def test_top1_assists(self):
+        best = self.stats.top(1,3)[0].name
+        self.assertAlmostEqual(best,Player("Gretzky", "EDM", 35,89).name)
+
         
