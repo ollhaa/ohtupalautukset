@@ -6,13 +6,16 @@ def main():
     response = requests.get(url).json()
 
     print("JSON-muotoinen vastaus:")
-    print(response)
+    #print(response)
 
     players = []
 
     for player_dict in response:
         player = Player(player_dict)
         players.append(player)
+
+
+    players.sort(key=lambda x: x.goals+x.assists, reverse=True)
 
     print("Players from FIN\n")
 
