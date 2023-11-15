@@ -38,3 +38,11 @@ class UserService:
             raise UserInputError("Username and password are required")
 
         # toteuta loput tarkastukset tänne ja nosta virhe virhetilanteissa
+
+    #def login_with_incorrect_password(self, username, password):
+    #    user = self._user_repository.find_by_username(username)
+
+    #    if user.password != password or user.password is None:
+    #        raise AuthenticationError("password")
+
+    #    return user
