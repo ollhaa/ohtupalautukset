@@ -35,9 +35,45 @@ Register With Nonmatching Password And Password Confirmation
     Submit Credentials
     Register Should Fail with message  Passwords did not match
 
+Login After Successful Registration
+    Set Username  kallem
+    Set Password  kalle124
+    Set Password confirmation  kalle124
+    Submit Credentials
+    Register Should Succeed
+    Go To Login Page
+    Set Username  kallem
+    Set Password  kalle124
+    Submit Credentials Login
+    Login Should Succeed
+
+Login After Failed Registration
+    Set Username  kallet
+    Set Password  kal
+    Set Password confirmation  kal
+    Submit Credentials
+    Register Should Fail with message  Password is too short
+    Go To Login Page
+    Set Username  kallet
+    Set Password  ka
+    Submit Credentials Login
+    Login Should Fail With Message  Invalid username or password
+    
+
 *** Keywords ***
 Submit Credentials
     Click Button  Register
+
+Submit Credentials Login
+    Click Button  Login
+
+Login Should Succeed
+    Main Page Should Be Open
+
+Login Should Fail With Message
+    [Arguments]  ${message}
+    Login Page Should Be Open
+    Page Should Contain  ${message}
 
 Register Should Fail With Message
     [Arguments]  ${message}
