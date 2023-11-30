@@ -4,9 +4,11 @@ class Sovelluslogiikka:
         self._edellinen = 0
 
     def miinus(self, operandi):
+        self._edellinen = self._arvo
         self._arvo = self._arvo - operandi
 
     def plus(self, operandi):
+        self._edellinen = self._arvo
         self._arvo = self._arvo + operandi
 
     def nollaa(self):
@@ -17,9 +19,6 @@ class Sovelluslogiikka:
 
     def arvo(self):
         return self._arvo
-
-    #def tulos(self):
-    #    return self._arvo
     
     def kumoa(self):
         self._arvo = self._edellinen
