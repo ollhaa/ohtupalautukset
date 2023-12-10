@@ -8,21 +8,23 @@ def main():
     reader = PlayerReader(url)
     stats = Statistics(reader)
 
-    matcher = And(
-        HasAtLeast(5, "goals"),
-        HasAtLeast(20, "assists"),
-        PlaysIn("PHI")
-    )
-    for player in stats.matches(matcher):
-        print(player)
-    
-    print()
-
     query = QueryBuilder()
 
-    matcher = query.playsIn("NYR").hasAtLeast(22, "goals").build()
-
+    matcher = (
+  query
+    .oneOf(
+      query.playsIn("PHI")
+          .hasAtLeast(10, "assists")
+          .hasFewerThan(5, "goals")
+          .build(),
+      query.playsIn("EDM")
+          .hasAtLeast(50, "points")
+          .build()
+    )
+    .build()
+)
     for player in stats.matches(matcher):
         print(player)
+
 if __name__ == "__main__":
     main()

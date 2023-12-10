@@ -17,5 +17,8 @@ class QueryBuilder:
         #self.pino_olio = QueryBuilder(HasFewerThan(value, attr))
         return QueryBuilder(And(self.pino_olio, HasFewerThan(value, attr)))
 
+    def oneOf(self, *pino):
+        return QueryBuilder(Or(*pino))
+
     def build(self):
         return self.pino_olio
